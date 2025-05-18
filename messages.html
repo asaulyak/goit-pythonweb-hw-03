@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+ <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- CSS only -->
+    <title>Messages</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,8 +13,8 @@
     />
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body>
-    <header>
+<body>
+<header>
       <nav
         class="navbar navbar-expand navbar-dark bg-dark"
         aria-label="Second navbar example"
@@ -27,26 +26,38 @@
           <div class="collapse navbar-collapse" id="navbarsExample02">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/message.html">Send message</a>
               </li>
-                             <li class="nav-item">
-                <a class="nav-link" href="/read">Read messages</a>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Read messages</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-
-      <div class="p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-4 fw-normal">404</h1>
-        <p class="fs-5 text-muted">
-          Not Found
-        </p>
-      </div>
     </header>
-
-  </body>
+ <div class="container mt-3">
+      <main class="w-50 m-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Message</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in messages -%}
+            <tr>
+              <td>{{item.username|e}}</td>
+              <td>{{item.message|e}}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </main>
+ </div>
+</body>
 </html>
