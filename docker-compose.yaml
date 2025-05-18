@@ -1,0 +1,7 @@
+services:
+  hw3:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./storage:/storage
