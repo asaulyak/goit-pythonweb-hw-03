@@ -8,7 +8,7 @@ import urllib.parse
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader("."))
-template = env.get_template("messages.html")
+template = env.get_template("templates/messages.html")
 storage_path = "./storage/data.json"
 
 
@@ -16,16 +16,16 @@ class HttpHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         pr_url = urllib.parse.urlparse(self.path)
         if pr_url.path == "/":
-            self.send_html_file("index.html")
+            self.send_html_file("templates/index.html")
         elif pr_url.path == "/message.html":
-            self.send_html_file("message.html")
+            self.send_html_file("templates/message.html")
         elif pr_url.path == "/read":
             self.send_messages()
         else:
             if pathlib.Path().joinpath(pr_url.path[1:]).exists():
                 self.send_static()
             else:
-                self.send_html_file("error.html", 404)
+                self.send_html_file("templates/error.html", 404)
 
     def do_POST(self):
         data = self.rfile.read(int(self.headers["Content-Length"]))
